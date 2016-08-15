@@ -668,3 +668,17 @@ def ChangeCallOriginalCrossValidate(*args,  **kwargs):
         args.append(rocIntegrals)
     args = tuple(args)
     return originalFunction(*args)
+
+## Background booking method for BookDNN
+__BookDNNHelper = None
+
+## Graphical interface for booking DNN
+def BookDNN(self, loader, title="DNN"):
+    global __BookDNNHelper
+    def __bookDNN(optString):
+        self.BookMethod(loader, ROOT.TMVA.Types.kDNN, title, optString)
+        return
+    __BookDNNHelper = __bookDNN
+    clear_output()
+    JPyInterface.JsDraw.InsertCSS("NetworkDesigner.min.css")
+    JPyInterface.JsDraw.Draw("", "NetworkDesigner", True)
